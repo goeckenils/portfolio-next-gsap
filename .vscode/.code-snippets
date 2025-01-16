@@ -1,0 +1,53 @@
+{
+  "Next.js Client Component with Metadata": {
+    "prefix": "nextjs-client-page",
+    "body": [
+      "",
+      "import { NextPage } from 'next';",
+      "import { Metadata } from 'next';",
+      "",
+      "interface ${1:PageProps} {",
+      "",
+      "}",
+      "",
+      "export const metadata: Metadata = {",
+      "    title: '${2:Page Title}',",
+      "    description: '${3:Page Description}',",
+      "    keywords: '${4:Page Keywords}',",
+      "};",
+      "",
+      "const ${5:PageName}: NextPage<$1> = ({  }) => {",
+      "  return (",
+      "    <div>",
+      "        <h1>${6:Page Name}</h1>",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default $5;"
+    ],
+    "description": "Creates a Next.js client component with metadata and TypeScript boilerplate."
+    
+  },
+  "TypeScript Functional Component": {
+    "prefix": "tsfc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${1:ComponentProps} {",
+      "  ${2:// Add your props here}",
+      "}",
+      "",
+      "const ${3:ComponentName}: React.FC<$1> = ({ $4 }) => {",
+      "  return (",
+      "    <div>",
+      "      ${5:<h1>${3:ComponentName}</h1>}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default $3;"
+    ],
+    "description": "Creates a TypeScript functional component with a props interface."
+  }
+}
