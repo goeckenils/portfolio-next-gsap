@@ -1,6 +1,12 @@
 import { NextPage } from 'next';
 import { Metadata } from 'next';
+
+import Link from 'next/link';
 import Image from 'next/image';
+import AnimatedText from '@/components/AnimatedText/AnimatedText';
+import Button from '@/components/Button/Button';
+import coverImg from '@/app/assets/images/hero.png';
+
 interface HomeProps {
 
 }
@@ -11,11 +17,22 @@ export const metadata: Metadata = {
     keywords: 'Home Keywords',
 };
 
-const HomeName: NextPage<HomeProps> = ({  }) => {
+const HomeName: NextPage<HomeProps> = ({}) => {
   return (
-    <div className='page-content hero'>
-        <h1>INDEX <sub>(01)</sub></h1>
-        
+    <div className='Home'>
+        <div className='flex-container'>
+              <AnimatedText text='NILS GOECKE'/>
+              <AnimatedText text='WEBDEVELOPER&'/>
+              <AnimatedText text='DIGITAL DESIGNER'/>
+              <Image src={coverImg} alt="Cover Image" className="bg-img" />
+          <Link href="/work">
+            <h1 className='hero-text'>
+
+            </h1>
+          </Link>
+          <Button marginTop={24} text='SEE PORTFOLIO'/>
+        </div>
+
     </div>
   );
 };

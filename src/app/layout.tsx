@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+
 import Menu from "@/components/Menu/Menu";
+
 import CursorFollower from "@/components/CursorFollower/CursorFollower";
+import { AnimationProvider } from "@/context/TimelineContext/TimelineContext";
+import { Geist, Geist_Mono } from "next/font/google";
+
+import type { Metadata } from "next";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,11 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <html lang="en">
+    <meta name="NG Portfolio" content="Nils Goecke \ Portfolio" />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Menu/>
-        <CursorFollower/>
-        {children}
+        <AnimationProvider>
+          <Menu/>
+          <CursorFollower/>
+          {children}
+        </AnimationProvider>
       </body>
     </html>
   );

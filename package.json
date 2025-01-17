@@ -12,7 +12,8 @@
     "@gsap/react": "^2.1.2",
     "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "split-type": "^0.3.4"
   },
   "devDependencies": {
     "@types/node": "^20",
