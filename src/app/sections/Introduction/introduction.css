@@ -1,0 +1,51 @@
+.introduction-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.text-column {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 60%; /* 60% of the container width */
+  padding: 2rem;
+}
+
+.image-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* Take the remaining space */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.introduction-headline {
+  padding-top:8rem;
+}
+
+.bio-wrapper {
+    display:flex;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+.text-wrapper {
+     text-align: justify;
+     max-width: 365px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+}

@@ -11,9 +11,15 @@ import { useAnimation } from '@/context/TimelineContext/TimelineContext';
 type AnimatedTextProps = {
   text: string;
   timeline?: gsap.core.Timeline;
+  delay?: number;
 };
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text,timeline: externalTimeline, ...props }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({ 
+  text,
+  delay, 
+  timeline: externalTimeline,
+   ...props 
+  }) => {
   const container = useRef<HTMLDivElement>(null);
   const item = useRef<HTMLDivElement>(null);
   const timeline = useRef<gsap.core.Timeline>(null);
@@ -24,24 +30,35 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text,timeline: externalTime
       const lines = splittedText.lines;
       const words = splittedText.words;
   
-      if (menuAnimationComplete) {
         timeline!.current = gsap.timeline()
         .set(words, { y: 300 })
         .to(words, {
           duration: 2,
           y: 0,
-          stagger: 0.1,
+          stagger: 0.2,
           ease: 'power4.out',
+          delay: delay || 0,
         });
+
+      if (externalTimeline) {
+          externalTimeline.add(timeline!.current);
       }
 
-      console.log(timeline?.current)
+      if (menuAnimationComplete) {
+        timeline!.current.play();
+      }
+
+
   }, []);
+
+  useGSAP(() => {
+    timeline!.current?.play();
+  }, { scope: container });
 
   return (
     <div className='animated-text-container' ref={container}>
       <div className='animated-text-wrapper'>
-        <h1 className="animated-text-item" ref={item}>
+        <h1 {...props} className="animated-text-item" ref={item}>
           {text}
         </h1>
       </div>

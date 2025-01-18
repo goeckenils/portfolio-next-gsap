@@ -1,23 +1,17 @@
-
 import { NextPage } from 'next';
 import { Metadata } from 'next';
+import IntroductionSection from '../sections/Introduction/Introduction';
 
-interface IntroductionProps {
-
-}
+interface IntroductionProps {}
 
 export const metadata: Metadata = {
-    title: 'Introduction',
-    description: 'Page Description',
-    keywords: 'Page Keywords',
+  title: 'Introduction',
+  description: 'Page Description',
+  keywords: 'Page Keywords',
 };
 
-const Introduction: NextPage<IntroductionProps> = ({  }) => {
-  return (
-    <div>
-        <h1>INTRODUCTION <sub>(02)</sub></h1>
-    </div>
-  );
+const Introduction: NextPage<IntroductionProps> = ({}) => {
+  return <IntroductionSection />;
 };
 
 export default Introduction;
