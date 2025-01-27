@@ -1,0 +1,20 @@
+.heading {
+    padding-left: 2rem;
+    padding-top: 12rem;
+}
+
+.playlists-cards {
+    display: flex;
+    padding-left: 2rem;
+    gap: 2rem;
+}
+
+.sub-heading {
+    padding-left: 2rem;
+    max-width: 365px;
+}
+
+.flex-row {
+    padding-top: 3rem;
+    display: flex;
+}

@@ -1,59 +1,71 @@
 import { gsap } from 'gsap';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
-export const animatePageIn = () => {
-  const transitionElement = document.getElementById('transition-element');
+// Define constants for clip paths
+const CLIP_PATHS = {
+  hidden: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+  visible: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+} as const;
 
-  if (transitionElement) {
-    const tl = gsap.timeline();
+// Define common animation settings
+const ANIMATION_CONFIG = {
+  duration: 1.25,
+  ease: 'power4.inOut',
+} as const;
 
-    tl.set(transitionElement, {
-      xPercent: 0,
-    })
-      .to(transitionElement, {
-        xPercent: 100,
-        duration: 0.8,
-      })
-      .to(
-        transitionElement,
-        {
-          borderTopLeftRadius: '50vh',
-          borderBottomLeftRadius: '50vh',
-          duration: 0.4,
-        },
-        '<'
-      );
+// Store the timeline globally so we can reuse it
+let tl: gsap.core.Timeline | null = null;
+
+/**
+ * Creates and caches the transition timeline
+ */
+const getTransitionTimeline = (element: HTMLElement) => {
+  if (!tl) {
+    tl = gsap.timeline({ paused: true }).to(element, {
+      clipPath: CLIP_PATHS.visible,
+      ...ANIMATION_CONFIG,
+    });
   }
+  return tl;
 };
 
-export const animatePageOut = (href: string, router: AppRouterInstance) => {
-  const animationWrapper = document.getElementById('transition-element');
+/**
+ * Animates the page transition overlay in
+ */
+export const animatePageIn = (): void => {
+  const transitionOverlay = document.getElementById('transition-overlay');
 
-  if (animationWrapper) {
-    const tl = gsap.timeline();
-
-    tl.set(animationWrapper, {
-      xPercent: -100,
-      borderTopRightRadius: '50vh',
-      borderBottomRightRadius: '50vh',
-      borderTopLeftRadius: '0',
-      borderBottomLeftRadius: '0',
-    })
-      .to(animationWrapper, {
-        xPercent: 0,
-        duration: 0.8,
-        onComplete: () => {
-          router.push(href);
-        },
-      })
-      .to(
-        animationWrapper,
-        {
-          borderTopRightRadius: '0',
-          borderBottomRightRadius: '0',
-          duration: 0.4,
-        },
-        '<'
-      );
+  if (!transitionOverlay) {
+    console.warn('Transition element not found');
+    return;
   }
+
+  const timeline = getTransitionTimeline(transitionOverlay);
+  timeline.reverse();
+};
+
+/**
+ * Animates the page transition overlay out and handles navigation
+ * @param href The destination URL
+ * @param router Next.js router instance
+ */
+
+export const animatePageOut = (
+  href: string,
+  router: AppRouterInstance
+): void => {
+  const transitionOverlay = document.getElementById('transition-overlay');
+
+  if (!transitionOverlay) {
+    console.warn('Transition element not found');
+    router.push(href);
+    return;
+  }
+
+  const timeline = getTransitionTimeline(transitionOverlay);
+  timeline.play();
+
+  timeline.eventCallback('onComplete', () => {
+    router.push(href);
+  });
 };

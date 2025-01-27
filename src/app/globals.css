@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+    cursor: none !important;
 }
 
 html {
@@ -30,6 +31,7 @@ body {
     font-family: 'Neue Haas', sans-serif;
     background: #fff;
     overflow: hidden;
+
 }
 
 a,p {
@@ -93,3 +95,17 @@ sub {
     padding: 0 2rem;
     padding-top: 20vh;
 }
+
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }

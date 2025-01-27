@@ -10,7 +10,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <div>
-      <div className="menu-overlay"></div>
+      <div id="transition-overlay"></div>
       {children}
     </div>
   );

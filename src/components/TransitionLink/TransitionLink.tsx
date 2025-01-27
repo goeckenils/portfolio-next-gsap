@@ -1,25 +1,28 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { animatePageOut } from '@/components/Transition/Transition';
-import Link from 'next/link';
 
-export default function TransitionLink({
-  href,
-  label,
-}: {
+interface Props {
   href: string;
   label: string;
-}) {
-  const router = useRouter();
+}
 
-  const handleClick = () => {
-    animatePageOut(href, router);
+const TransitionLink = ({ href, label }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (pathname !== href) {
+      animatePageOut(href, router);
+    }
   };
 
   return (
-    <Link href={href} onClick={handleClick}>
+    <button className="transition-link" onClick={(e) => handleClick(e)}>
       {label}
-    </Link>
+    </button>
   );
-}
+};
+
+export default TransitionLink;

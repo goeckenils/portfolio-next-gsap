@@ -29,7 +29,7 @@ const HomeName: NextPage<HomeProps> = ({}) => {
           <h1 className="hero-text"></h1>
         </Link>
         <Button marginTop={24} text="SEE PORTFOLIO" />
-        <TransitionLink href="/work" label="SEE PORTFOLIO" />
+        <TransitionLink href="/work" label="SEE MY WORK" />
       </div>
     </div>
   );

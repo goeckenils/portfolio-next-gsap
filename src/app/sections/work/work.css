@@ -1,0 +1,11 @@
+.heading {
+    padding-left: 2rem;
+    padding-top: 12rem;
+}
+
+.cards {
+    padding-top: 2rem;
+    display: flex;
+    padding-left: 2rem;
+    gap: 2rem;
+}

@@ -5,7 +5,9 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: rgba(255, 53, 17, 0.87);
+    /*background-color: rgba(255, 53, 17, 0.87);*/
+    background-color: rgba(255, 2555, 255, 0.87);
+    mix-blend-mode: difference;
     opacity: 0;
     z-index: 10000;
     user-select: none;
