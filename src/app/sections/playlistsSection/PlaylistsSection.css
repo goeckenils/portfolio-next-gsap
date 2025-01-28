@@ -7,11 +7,19 @@
     display: flex;
     padding-left: 2rem;
     gap: 2rem;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: min-content;
+    justify-content: flex-end;
+    overflow: visible;
+    position: relative;
+    width: min-content;
 }
 
 .sub-heading {
     padding-left: 2rem;
-    max-width: 365px;
+    min-width: 365px;
 }
 
 .flex-row {

@@ -1,6 +1,8 @@
 import React from 'react';
 // import Image from 'next/image';
 
+import './PlaylistCard.css';
+
 interface PlaylistCardProps {
   img: string;
   href: string;
@@ -23,16 +25,21 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
   return (
     <div className="playlist-card-container">
       <div className="playlist-img-container">
-        <img src={img} />
+        <img className="playlist-image" src={img} />
       </div>
-      <div className="playlist-text-container">
+      <div className="playlist-row-container">
         <div className="playlist-text-wrapper">
           <p className="playlist-name">{name}</p>
           <p className="playlist-curator">{curator}</p>
           <p className="playlist-description">{description}</p>
           <p className="playlist-artists">
             {artists.map((artist, index) => {
-              return <span key={index}>{artist}</span>;
+              return (
+                <span key={index}>
+                  {artist}
+                  {index !== artists.length - 1 ? ', ' : ''}
+                </span>
+              );
             })}
           </p>
         </div>
